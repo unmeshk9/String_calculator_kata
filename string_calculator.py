@@ -4,4 +4,7 @@ class StringCalculator:
         if numbers == "":
             return 0
         # Handle single number input
+        if "," in numbers:
+            parts = numbers.split(",")
+            return sum(int(n) for n in parts)
         return int(numbers)
