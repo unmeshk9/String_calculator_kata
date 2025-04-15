@@ -1,46 +1,26 @@
-# String Calculator Kata (Incubyte Assignment)
+# String Calculator TDD Kata (Incubyte Assessment)
 
-This project implements the String Calculator Kata using Test-Driven Development (TDD), following clean code and commit craftsmanship.
+This is my implementation of the **String Calculator Kata** using **Test-Driven Development (TDD)** in Python.
 
-## How to run tests
+## Features Implemented
 
-```bash
-python -m unittest discover
-```
-
-## Features covered
-- Empty string returns 0
-- Single number returns itself
-- Two numbers, comma-delimited, returns sum
-- Arbitrary number of values
-- Newline (\n) as delimiter
-- Custom single-character delimiter (e.g., //;\n1;2)
-- Negative numbers raise exception (with all negatives in message)
-- Ignore numbers > 1000
-- Delimiters of any length (e.g., //[***]\n1***2)
-- Multiple delimiters (e.g., //[*][%]\n1*2%3)
-- Multiple multi-character delimiters (e.g., //[**][%%]\n1**2%%3)
-
-## Screenshot instructions
-1. Run all tests:
-   ```bash
-   python -m unittest discover
-   ```
-2. Take a screenshot of the terminal showing all tests passing.
-3. Save it as `screenshots/all_tests_passing.png` (create the `screenshots` folder if it doesn't exist).
-4. Add and commit:
-   ```bash
-   git add screenshots/all_tests_passing.png
-   git commit -m "📸 Add test results screenshot"
-   ```
-
-## How to push to GitHub
-If you haven't already, create a GitHub repo and push:
-```bash
-git remote add origin <your-repo-url>
-git branch -M main
-git push -u origin main
-```
+| Feature | Description |
+|--------|-------------|
+| Empty string | Returns 0 |
+| One/Two numbers | Returns their sum |
+| Unknown number of values | Supports arbitrary count |
+| Newline as delimiter | Handles `\n` along with `,` |
+| Custom single-char delimiter | Format: `//;\n1;2` |
+| Negative numbers | Raises exception with all negatives |
+| Ignore numbers >1000 | Skips those in the sum |
+| Delimiters of any length | Format: `//[***]\n1***2***3` |
+| Multiple delimiters | Format: `//[*][%]\n1*2%3` |
+| Multi-char delimiters | Format: `//[**][%%]\n1**2%%3` |
 
 ---
-Happy Coding!
+
+## How to Run
+
+# Run unit tests
+python -m unittest discover
+
