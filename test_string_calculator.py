@@ -14,5 +14,10 @@ class TestStringCalculator(unittest.TestCase):
         calc = StringCalculator()
         self.assertEqual(calc.add("1,2"), 3)
 
+    def test_arbitrary_number_of_values(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("1,2,3,4"), 10)
+        self.assertEqual(calc.add("10,20,30"), 60)
+
 if __name__ == "__main__":
     unittest.main()
