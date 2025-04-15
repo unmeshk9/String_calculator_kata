@@ -36,5 +36,13 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             calc.add("//;\n-1;2;3")
 
+    def test_exception_message_shows_all_negatives(self):
+        calc = StringCalculator()
+        try:
+            calc.add("1,-2,-3,4")
+        except ValueError as e:
+            self.assertIn("-2", str(e))
+            self.assertIn("-3", str(e))
+
 if __name__ == "__main__":
     unittest.main()
