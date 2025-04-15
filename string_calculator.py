@@ -9,16 +9,20 @@ class StringCalculator:
         delimiter = ","
         if numbers.startswith("//"):
             if numbers[2] == '[':
-                # Multi-character delimiter
-                end = numbers.index(']')
-                delimiter = numbers[3:end]
-                numbers = numbers[end+2:]
+                # Multiple delimiters of any length
+                import re
+                delimiters = re.findall(r'\[(.*?)\]', numbers)
+                rest = numbers.split('\n', 1)[1]
+                # Build regex pattern for all delimiters
+                pattern = '|'.join(map(re.escape, delimiters))
+                parts = re.split(pattern, rest)
             else:
                 delimiter = numbers[2]
-                numbers = numbers[4:]
-        # Replace newline with delimiter for consistent tokenization
-        numbers = numbers.replace("\n", delimiter)
-        parts = re.split(re.escape(delimiter), numbers)
+                rest = numbers[4:]
+                parts = re.split(re.escape(delimiter), rest.replace("\n", delimiter))
+        else:
+            # Default: comma and newline as delimiters
+            parts = re.split(',|\n', numbers)
         nums = [int(n) for n in parts if n]
         # Raise error if any negative numbers are found
         negatives = [n for n in nums if n < 0]
