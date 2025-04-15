@@ -4,7 +4,11 @@ class StringCalculator:
         if numbers == "":
             return 0
         # Handle single number input
-        # Allow newline character as a valid delimiter
-        numbers = numbers.replace("\n", ",")
-        parts = numbers.split(",")
+        # Parse custom delimiters if string starts with "//"
+        delimiter = ","
+        if numbers.startswith("//"):
+            delimiter = numbers[2]
+            numbers = numbers[4:]  # skip // and delimiter and newline
+        numbers = numbers.replace("\n", delimiter)
+        parts = numbers.split(delimiter)
         return sum(int(n) for n in parts)
