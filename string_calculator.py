@@ -47,3 +47,12 @@ class StringCalculator:
 
         # Return the sum of all valid numbers
         return sum(nums)
+
+if __name__ == "__main__":
+    calc = StringCalculator()
+    test_input = input("Enter numbers string: ")
+    try:
+        result = calc.add(test_input)
+        print(f"Result: {result}")
+    except Exception as e:
+        print(f"Error: {e}")

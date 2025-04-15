@@ -21,6 +21,15 @@ This is my implementation of the **String Calculator Kata** using **Test-Driven 
 
 ## How to Run
 
-# Run unit tests
+### Run unit tests
+```bash
 python -m unittest discover
+```
+
+### Run manually from the terminal
+You can run the calculator interactively:
+```bash
+python string_calculator.py
+```
+You will be prompted to enter a numbers string (e.g., `1,2,3` or `//[***]\n1***2***3`). The result or any error will be printed in the terminal.
 
