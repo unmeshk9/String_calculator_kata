@@ -16,4 +16,6 @@ class StringCalculator:
         negatives = [n for n in nums if n < 0]
         if negatives:
             raise ValueError(f"Negatives not allowed: {negatives}")
+        # Ignore any number greater than 1000 per spec
+        nums = [n for n in nums if n <= 1000]
         return sum(nums)
