@@ -12,7 +12,7 @@ class StringCalculator:
         if numbers == "":
             return 0
 
-        import re  # Use regex for delimiter parsing and splitting
+        import re  # regex for delimiter parsing and splitting
         delimiter = ","  # Default delimiter
 
         # Check for custom delimiter syntax at the start
