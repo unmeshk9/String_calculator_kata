@@ -49,5 +49,10 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(calc.add("2,1001"), 2)
         self.assertEqual(calc.add("1000,1001,6"), 1006)
 
+    def test_multi_char_custom_delimiter(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("//[***]\n1***2***3"), 6)
+        self.assertEqual(calc.add("//[abc]\n4abc5abc6"), 15)
+
 if __name__ == "__main__":
     unittest.main()

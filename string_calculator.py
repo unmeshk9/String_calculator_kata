@@ -5,13 +5,21 @@ class StringCalculator:
             return 0
         # Handle single number input
         # Parse custom delimiters if string starts with "//"
+        import re
         delimiter = ","
         if numbers.startswith("//"):
-            delimiter = numbers[2]
-            numbers = numbers[4:]  # skip // and delimiter and newline
+            if numbers[2] == '[':
+                # Multi-character delimiter
+                end = numbers.index(']')
+                delimiter = numbers[3:end]
+                numbers = numbers[end+2:]
+            else:
+                delimiter = numbers[2]
+                numbers = numbers[4:]
+        # Replace newline with delimiter for consistent tokenization
         numbers = numbers.replace("\n", delimiter)
-        parts = numbers.split(delimiter)
-        nums = [int(n) for n in parts]
+        parts = re.split(re.escape(delimiter), numbers)
+        nums = [int(n) for n in parts if n]
         # Raise error if any negative numbers are found
         negatives = [n for n in nums if n < 0]
         if negatives:
