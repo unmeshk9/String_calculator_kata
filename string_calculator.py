@@ -1,33 +1,49 @@
 class StringCalculator:
     def add(self, numbers: str) -> int:
-        # Return 0 for empty input as per spec
+        """
+        Adds numbers provided in a string, supporting custom delimiters and special rules.
+        - Empty string returns 0
+        - Single or multiple numbers separated by comma, newline, or custom delimiters
+        - Custom delimiters: //delimiter\n or //[delim1][delim2]\n
+        - Negative numbers raise ValueError listing all negatives
+        - Numbers > 1000 are ignored
+        """
+        # Return 0 for empty input
         if numbers == "":
             return 0
-        # Handle single number input
-        # Parse custom delimiters if string starts with "//"
-        import re
-        delimiter = ","
+
+        import re  # Use regex for delimiter parsing and splitting
+        delimiter = ","  # Default delimiter
+
+        # Check for custom delimiter syntax at the start
         if numbers.startswith("//"):
             if numbers[2] == '[':
-                # Multiple delimiters of any length
-                import re
+                # Handle multiple delimiters of any length, e.g. //[***][%%]\n1***2%%3
                 delimiters = re.findall(r'\[(.*?)\]', numbers)
                 rest = numbers.split('\n', 1)[1]
-                # Build regex pattern for all delimiters
+                # Build regex pattern to match any of the delimiters
                 pattern = '|'.join(map(re.escape, delimiters))
                 parts = re.split(pattern, rest)
             else:
+                # Handle single-character custom delimiter, e.g. //;\n1;2
                 delimiter = numbers[2]
                 rest = numbers[4:]
+                # Replace newline with delimiter for consistent splitting
                 parts = re.split(re.escape(delimiter), rest.replace("\n", delimiter))
         else:
-            # Default: comma and newline as delimiters
+            # Default: split on comma or newline
             parts = re.split(',|\n', numbers)
+
+        # Convert all non-empty string parts to integers
         nums = [int(n) for n in parts if n]
-        # Raise error if any negative numbers are found
+
+        # Raise error if any negative numbers are found, listing all negatives
         negatives = [n for n in nums if n < 0]
         if negatives:
             raise ValueError(f"Negatives not allowed: {negatives}")
-        # Ignore any number greater than 1000 per spec
+
+        # Ignore any number greater than 1000
         nums = [n for n in nums if n <= 1000]
+
+        # Return the sum of all valid numbers
         return sum(nums)
