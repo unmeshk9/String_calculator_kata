@@ -59,5 +59,10 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(calc.add("//[*][%]\n1*2%3"), 6)
         self.assertEqual(calc.add("//[@][#]\n4@5#6"), 15)
 
+    def test_multi_char_multiple_delimiters(self):
+        calc = StringCalculator()
+        self.assertEqual(calc.add("//[**][%%]\n1**2%%3"), 6)
+        self.assertEqual(calc.add("//[ab][cd]\n4ab5cd6"), 15)
+
 if __name__ == "__main__":
     unittest.main()
