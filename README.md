@@ -31,5 +31,63 @@ You can run the calculator interactively:
 ```bash
 python string_calculator.py
 ```
-You will be prompted to enter a numbers string (e.g., `1,2,3` or `//[***]\n1***2***3`). The result or any error will be printed in the terminal.
 
+#### Usage Steps
+1. When prompted, enter your numbers string according to the supported formats below. Do **not** use quotes around your input.
+2. For multi-line input (e.g., custom delimiters), type the first line, press Enter, then type the numbers line, and press Enter again.
+3. The result or any error will be printed in the terminal.
+
+#### Examples
+- **Empty input:**
+  - Just press Enter
+  - Output: `Result: 0`
+
+- **Single number:**
+  - Input: `1`
+  - Output: `Result: 1`
+
+- **Comma-separated numbers:**
+  - Input: `1,2,3`
+  - Output: `Result: 6`
+
+- **Newline as delimiter:**
+  - Input:
+    ```
+    1
+    2,3
+    ```
+  - Output: `Result: 6`
+
+- **Custom single-character delimiter:**
+  - Input:
+    ```
+    //;
+    1;2
+    ```
+  - Output: `Result: 3`
+
+- **Multiple delimiters:**
+  - Input:
+    ```
+    //[*][%]
+    1*2%3
+    ```
+  - Output: `Result: 6`
+
+- **Multi-character delimiters:**
+  - Input:
+    ```
+    //[***][%%]
+    1***2%%3
+    ```
+  - Output: `Result: 6`
+
+- **Negative numbers:**
+  - Input: `1,-2,-3`
+  - Output: `Error: Negatives not allowed: [-2, -3]`
+
+- **Numbers > 1000 are ignored:**
+  - Input: `2,1001`
+  - Output: `Result: 2`
+
+If you copy-paste a multi-line example, make sure your terminal supports multi-line input, or type each line and press Enter.
