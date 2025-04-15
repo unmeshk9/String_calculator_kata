@@ -29,5 +29,12 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(calc.add("//;\n1;2"), 3)
         self.assertEqual(calc.add("//@\n2@3@4"), 9)
 
+    def test_negative_numbers_raise_exception(self):
+        calc = StringCalculator()
+        with self.assertRaises(ValueError):
+            calc.add("1,-2,3")
+        with self.assertRaises(ValueError):
+            calc.add("//;\n-1;2;3")
+
 if __name__ == "__main__":
     unittest.main()

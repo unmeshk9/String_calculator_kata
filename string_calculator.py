@@ -11,4 +11,9 @@ class StringCalculator:
             numbers = numbers[4:]  # skip // and delimiter and newline
         numbers = numbers.replace("\n", delimiter)
         parts = numbers.split(delimiter)
-        return sum(int(n) for n in parts)
+        nums = [int(n) for n in parts]
+        # Raise error if any negative numbers are found
+        negatives = [n for n in nums if n < 0]
+        if negatives:
+            raise ValueError(f"Negatives not allowed: {negatives}")
+        return sum(nums)
